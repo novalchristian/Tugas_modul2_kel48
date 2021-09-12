@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import ListNama from './component/ListNama';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export default class App extends Component {
+  state = {
+    listNama: false,
+
+  }
+
+  onClickNo = () => {
+    this.setState({listNama: false})
+  }
+
+  onClickYes = () => {
+    this.setState({listNama: true})
+  }
+  
+
+  render() {
+    return (
+      <div className="container h-100 justify-content-center align-items-center" >
+        <h2 className="row text-center">
+          {this.props.title}
+        </h2>
+        <div className="row h-100" style={{display:"block", textAlign:"center"}}>
+          <button className="btn btn-danger" style={{marginRight:10}} onClick={this.onClickNo}>{this.props.no}</button>
+          <button className="btn btn-success" onClick={this.onClickYes}>{this.props.yes}</button>
+          {this.state.listNama && <ListNama data={this.props.data} />}
+        </div>
+      </div>
+    )
+  }
 }
-
-export default App;
